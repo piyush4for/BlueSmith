@@ -1,25 +1,30 @@
 pragma solidity ^0.4.17;
 
 contract Inbox {
-    string public message;
+    string public userName;
+    string public userPassword;
     address[] public members;
+    mapping(address => bool) public IsHeMember;
     mapping(string => uint) tokens;
     
-    function Inbox(string initialMessage) public {
-        message = initialMessage;
+    function Inbox(string name, string password) public {
+        userName = name;
+        userPassword = password;
+        
     }    
     
-    function setMessage(string newMessage) public {
-        message = newMessage;
+    function changePassword(string newPassword) public {
+        userPassword = newPassword;
     }
     
     function register() public payable {
         require(msg.value > .01 ether);
-        
+        IsHeMember[msg.sender] = true;
         members.push(msg.sender);
     }
     
     function getToken() public  view  returns (string tokenValue) {
+        require(IsHeMember[msg.sender]);
       uint _i = uint256(msg.sender);
       if (_i == 0) {
           return "0";
@@ -40,11 +45,13 @@ contract Inbox {
     }
     
     function payToken(uint value) public payable {
+        require(IsHeMember[msg.sender]);
         require(msg.value == value);
         tokens[getToken()] = msg.value;
     }
     
     function getTokenValue(string input) public view returns (uint){
+        require(IsHeMember[msg.sender]);
         return tokens[string(input)];
     }
 

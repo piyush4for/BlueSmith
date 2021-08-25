@@ -1,15 +1,15 @@
 pragma solidity ^0.4.17;
 
-contract Inbox {
+contract BlueSmith {
     string public userName;
     string public userPassword;
     address[] public members;
-    mapping(address => bool) public IsHeMember;
+    mapping(address => bool) IsHeMember;
     mapping(string => uint) tokens;
     
-    function Inbox(string name, string password) public {
-        userName = name;
-        userPassword = password;
+    function BlueSmith(string USERNAME, string PASSWORD) public {
+        userName = USERNAME;
+        userPassword = PASSWORD;
         
     }    
     

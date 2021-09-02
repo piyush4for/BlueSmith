@@ -23,7 +23,7 @@ contract BlueSmith {
     string public userPassword;
     address[] public members;
     mapping(address => bool) IsHeMember;
-    mapping(string => uint) public tokens;
+    mapping(string => uint) tokens;
     
     function BlueSmith(string USERNAME, string PASSWORD) public {
         userName = USERNAME;

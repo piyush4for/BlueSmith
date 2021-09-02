@@ -1,7 +1,7 @@
 const { interfaces } = require('mocha');
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
-const compiledFactory = require('./build/CampaignFactory.json')
+const compiledFactory = require('./build/Factory.json')
 
 const provider = new HDWalletProvider(
     'come slow super history large defense drift stone one fat escape good', 
